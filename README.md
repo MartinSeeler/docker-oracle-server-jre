@@ -17,11 +17,6 @@ You should now be able to run `java` in your image.
 
 ## Usage from Docker Hub
 
-```
-// COMING SOON WHEN REGISTERED
-// BUT THEN!!!, it will be something like
-```
-
 To run the latest and greatest version of all times, you have to execute:
 ```bash
 $ docker run martinseeler/oracle-server-jre
@@ -35,10 +30,6 @@ $ docker run martinseeler/oracle-server-jre:1.8_20
 
 ## Usage in your image
 
-```
-// COMING SOON WHEN REGISTERED
-// BUT THEN!!!, it will be something like
-```
 Just set the `FROM` command in your own `Dockerfile` as follows:
 ```
 FROM martinseeler/oracle-server-jre
