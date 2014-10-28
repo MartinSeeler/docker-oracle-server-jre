@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.9.11
+FROM phusion/baseimage:0.9.15
 MAINTAINER Martin Seeler <developer@chasmo.de>
 
 # Set correct environment variables.
