@@ -18,7 +18,7 @@ RUN apt-get install -y wget
 
 # Download oracle's server jre
 WORKDIR /tmp
-RUN wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u20-b26/server-jre-8u20-linux-x64.tar.gz -O server-jre.tar.gz
+RUN wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u25-b17/server-jre-8u25-linux-x64.tar.gz -O server-jre.tar.gz
 RUN mkdir oracle-server-jre
 RUN tar --strip-components=1 -x -f server-jre.tar.gz -C ./oracle-server-jre
 
