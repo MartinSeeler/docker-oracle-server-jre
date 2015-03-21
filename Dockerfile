@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.9.15
+FROM phusion/baseimage:0.9.16
 MAINTAINER Martin Seeler <developer@chasmo.de>
 
 # Set correct environment variables.
@@ -18,7 +18,7 @@ RUN apt-get install -y wget
 
 # Download oracle's server jre
 WORKDIR /tmp
-RUN wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u31-b13/server-jre-8u31-linux-x64.tar.gz -O server-jre.tar.gz
+RUN wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u40-b26/server-jre-8u40-linux-x64.tar.gz -O server-jre.tar.gz
 RUN mkdir oracle-server-jre
 RUN tar --strip-components=1 -x -f server-jre.tar.gz -C ./oracle-server-jre
 
