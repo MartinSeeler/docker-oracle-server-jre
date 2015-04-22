@@ -1,35 +1,27 @@
-FROM phusion/baseimage:0.9.16
+FROM gliderlabs/alpine
 MAINTAINER Martin Seeler <developer@chasmo.de>
 
 # Set correct environment variables.
 ENV HOME /root
+ENV MAJOR 8
+ENV MINOR 45
 
-# Regenerate SSH host keys. baseimage-docker does not contain any, so you
-# have to do that yourself. You may also comment out this instruction; the
-# init system will auto-generate one during boot.
-RUN /etc/my_init.d/00_regen_ssh_host_keys.sh
-
-# Use baseimage-docker's init system.
-CMD ["/sbin/my_init"]
-
-# Update the system and install all dependencies
-RUN apt-get update
-RUN apt-get install -y wget
+RUN apk --update add wget ca-certificates
 
 # Download oracle's server jre
 WORKDIR /tmp
-RUN wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u40-b26/server-jre-8u40-linux-x64.tar.gz -O server-jre.tar.gz
+RUN wget "https://circle-artifacts.com/gh/andyshinn/alpine-pkg-glibc/6/artifacts/0/home/ubuntu/alpine-pkg-glibc/packages/x86_64/glibc-2.21-r2.apk" && apk add --allow-untrusted glibc-2.21-r2.apk
+RUN wget "https://circle-artifacts.com/gh/andyshinn/alpine-pkg-glibc/6/artifacts/0/home/ubuntu/alpine-pkg-glibc/packages/x86_64/glibc-bin-2.21-r2.apk" &&  apk add --allow-untrusted glibc-bin-2.21-r2.apk 
+RUN /usr/glibc/usr/bin/ldconfig /lib /usr/glibc/usr/lib
+RUN wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u45-b14/server-jre-8u45-linux-x64.tar.gz -O server-jre.tar.gz
 RUN mkdir oracle-server-jre
-RUN tar --strip-components=1 -x -f server-jre.tar.gz -C ./oracle-server-jre
+RUN tar -xzf server-jre.tar.gz -C ./oracle-server-jre
+RUN mkdir -p /opt/oracle-server-jre
 
 # Install it in /opt/oracle-server-jre and create symlinks
-RUN mv ./oracle-server-jre /opt
+RUN cp -r /tmp/oracle-server-jre/jdk1.${MAJOR}.0_${MINOR}/* /opt/oracle-server-jre/
 RUN ln -s /opt/oracle-server-jre/bin/java /usr/bin/java
 RUN chmod ugo+x /usr/bin/java
 
-# ...put your own build instructions here...
-
-# end of your own build instructions
-
-# Clean up APT when done.
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# Clean up APK when done.
+RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
