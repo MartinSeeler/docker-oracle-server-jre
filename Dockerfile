@@ -1,4 +1,4 @@
-FROM gliderlabs/alpine
+FROM gliderlabs/alpine:3.2
 MAINTAINER Martin Seeler <developer@chasmo.de>
 
 # Set correct environment variables.
