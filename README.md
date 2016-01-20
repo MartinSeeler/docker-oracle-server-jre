@@ -28,7 +28,7 @@ $ docker run martinseeler/oracle-server-jre
 If you want to run a specific java version, just include the tag for the version you want:
 
 ```bash
-$ docker run martinseeler/oracle-server-jre:1.8_71
+$ docker run martinseeler/oracle-server-jre:1.8_72
 ```
 
 ## Usage in your image
@@ -42,7 +42,7 @@ This will pull the latest and greatest version of all times.
 
 If you want a specifc version, include the tag to represent the java version:
 ```
-FROM martinseeler/oracle-server-jre:1.8_71
+FROM martinseeler/oracle-server-jre:1.8_72
 ```
 
 
@@ -63,9 +63,9 @@ $ docker run martinseeler/oracle-server-jre java -version
 You should see something like this:
 
 ```
-java version "1.8.0_71"
-Java(TM) SE Runtime Environment (build 1.8.0_71-b15)
-Java HotSpot(TM) 64-Bit Server VM (build 25.71-b15, mixed mode)
+java version "1.8.0_72"
+Java(TM) SE Runtime Environment (build 1.8.0_72-b15)
+Java HotSpot(TM) 64-Bit Server VM (build 25.72-b15, mixed mode)
 ```
 
 ## Dependencies
