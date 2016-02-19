@@ -9,9 +9,12 @@ ENV MINOR 72
 WORKDIR /tmp
 
 RUN apk --update add wget ca-certificates && \
- wget "https://circle-artifacts.com/gh/andyshinn/alpine-pkg-glibc/6/artifacts/0/home/ubuntu/alpine-pkg-glibc/packages/x86_64/glibc-2.21-r2.apk" && apk add --allow-untrusted glibc-2.21-r2.apk && \
- wget "https://circle-artifacts.com/gh/andyshinn/alpine-pkg-glibc/6/artifacts/0/home/ubuntu/alpine-pkg-glibc/packages/x86_64/glibc-bin-2.21-r2.apk" &&  apk add --allow-untrusted glibc-bin-2.21-r2.apk && \
- /usr/glibc/usr/bin/ldconfig /lib /usr/glibc/usr/lib && \
+ wget "https://github.com/andyshinn/alpine-pkg-glibc/releases/download/unreleased/glibc-2.23-r0.apk" && \
+ wget "https://github.com/andyshinn/alpine-pkg-glibc/releases/download/unreleased/glibc-bin-2.23-r0.apk" && \
+ wget "https://github.com/andyshinn/alpine-pkg-glibc/releases/download/unreleased/glibc-i18n-2.23-r0.apk" && \
+ apk add --no-cache --allow-untrusted glibc-2.23-r0.apk glibc-bin-2.23-r0.apk glibc-i18n-2.23-r0.apk && \
+ /usr/glibc-compat/bin/localedef --force --inputfile POSIX --charmap UTF-8 C.UTF-8 || true && \
+ echo "export LANG=C.UTF-8" > /etc/profile.d/locale.sh && \
  wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u72-b15/server-jre-8u72-linux-x64.tar.gz -O server-jre.tar.gz && \
  mkdir oracle-server-jre && \
  tar -xzf server-jre.tar.gz -C ./oracle-server-jre && \
@@ -20,4 +23,4 @@ RUN apk --update add wget ca-certificates && \
  ln -s /opt/oracle-server-jre/bin/* /usr/bin/ && \
  chmod ugo+x /usr/bin/java && \
  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
- apk del wget ca-certificates
+ apk del wget ca-certificates glibc-i18n
