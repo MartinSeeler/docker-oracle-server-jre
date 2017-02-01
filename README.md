@@ -2,7 +2,7 @@
 
 [![Docker Hub](https://img.shields.io/docker/pulls/martinseeler/oracle-server-jre.svg?style=flat-square)](https://registry.hub.docker.com/u/martinseeler/oracle-server-jre/)
 [![Docker Hub](https://img.shields.io/docker/stars/martinseeler/oracle-server-jre.svg?style=flat-square)](https://registry.hub.docker.com/u/martinseeler/oracle-server-jre/)
-[![ImageLayers](https://badge.imagelayers.io/martinseeler/oracle-server-jre:latest.svg)](https://imagelayers.io/?images=martinseeler/oracle-server-jre:latest 'Get your own badge on imagelayers.io')
+[![](https://badge.imagelayers.io/martinseeler/oracle-server-jre:latest.svg)](https://imagelayers.io/?images=martinseeler/oracle-server-jre:latest 'Get your own badge on imagelayers.io')
 
 Non of these ppa forks, just the latest and greatest original version, directly from the lord himself.
 
